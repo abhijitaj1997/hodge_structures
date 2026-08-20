@@ -1,11 +1,11 @@
 import HodgeStructures.BaseModification
-import Mathlib
 
-open TensorProduct
+open TensorProduct DirectSum
 
-
--- Need to create an internal direct sum using `Fin 2`
-structure RealHodgeFilteration (V : Type u) [AddCommGroup V] [Module ℝ V] where
+structure RealHodgeFilteration (V : Type u) (n : ℤ) [AddCommGroup V] [Module ℝ V] where
   F : ℤ → Submodule ℂ (V[ℝ,ℂ])
   filteration : Antitone F
-  internal_sum : ∀ p : ℤ, ℤ
+  internal_sum : ∀ p : ℤ, IsInternal ![toReal (F p),
+                 Submodule.map (spaceConj V) (toReal (F (n - p + 1)))]
+
+#min_imports

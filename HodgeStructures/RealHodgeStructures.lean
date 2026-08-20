@@ -65,3 +65,6 @@ structure RealHodgeStructureMorphism (h₁ : RealHodgeStructure V₁) (h₂ : Re
 --notation:25 h₁ " →ₗₕ[" ℝ:25 "] " h₂:0 => LinearMap (RingHom.id R) M M₂
 notation:25 h₁ " →ₕₛ " h₂:0 => (RealHodgeStructureMorphism h₁ h₂) -- how does on get ℝ into this?
 end Morphisms
+
+
+#min_imports
