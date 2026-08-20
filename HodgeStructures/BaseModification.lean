@@ -47,7 +47,7 @@ noncomputable def basechange_map (S : Type u₃) [CommRing S] [Algebra R S]
   map_add' := by simp
   map_smul' := by
     intro s m
-    simp
+    simp only [AddHom.toFun_eq_coe, LinearMap.coe_toAddHom, RingHom.id_apply]
     induction m using TensorProduct.induction_on with
     | zero => simp
     | tmul s' m => have : s • (s' ⊗ₜ[R] m) = (s * s') ⊗ₜ[R] m := by rfl
@@ -75,12 +75,6 @@ section RealToComplex
 noncomputable def spaceConj (V : Type*) [AddCommGroup V] [Module ℝ V] :
     V[ℝ, ℂ] →ₗ[ℝ] V[ℝ, ℂ] := twisted_basechange_map (LinearMap.id : V →ₗ[ℝ] V) Complex.conjAe
 
-
-
-theorem real_extension {V : Type*} [AddCommGroup V] [Module ℝ V] (W₁ : Submodule ℂ (V[ℝ,ℂ]))
-  (self_conj : 1 = 1) : ∃ W : Submodule ℝ V, W[ℝ,ℂ] = W₁ := by
-
-  sorry
 
 def toReal {V : Type*} [AddCommGroup V] [Module ℂ V] (W : Submodule ℂ V) : Submodule ℝ V where
   carrier := W

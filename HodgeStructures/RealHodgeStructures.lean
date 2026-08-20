@@ -1,5 +1,4 @@
 import HodgeStructures.BaseModification
-import Mathlib.Algebra.DirectSum.Basic
 
 
 -- I did not use extends, because I do not want someone passing a
@@ -9,18 +8,12 @@ import Mathlib.Algebra.DirectSum.Basic
 -- Now, you can only pass real vector spaces as arguments
 
 universe u v
-open scoped TensorProduct
+open TensorProduct
 open DirectSum
 
-section test
-variable (V : Type u) [AddCommGroup V] [Module ℝ V] (index : ℤ → ℤ → Subspace ℂ (V[ℝ,ℂ]))
-variable (i j : ℤ)
-
-#check toReal (index i j)
-#check Submodule.map (spaceConj V) (toReal (index i j))
-end test
 
 -- I do not know if the index_conjugate term is defined well
+-- Should I make it a `fintie dimensional`??
 structure RealHodgeStructure (V : Type u) [AddCommGroup V] [Module ℝ V] where
   index : ℤ → ℤ → Subspace ℂ (V[ℝ,ℂ])
   internal_sum : IsInternal (fun (p : ℤ × ℤ) => index p.1 p.2)

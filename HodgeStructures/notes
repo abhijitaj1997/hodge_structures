@@ -1,0 +1,4 @@
+1.  currently I am using a `toReal` function to convert `index i j` to
+    real vecotr spaces. If need be, I could instead create a function
+    `toComplex`, which makes `conj (index i j)` into a complex vector space.
+    The question is whether I need it.
