@@ -11,3 +11,5 @@ This is a Lean project on formalising Hodge structures. The definitions and prop
 
 The last goal is probably is bit harder, and whether it'll be part of the project will depend on how the rest of the project progresses.
 I am open to suggestion as well as new collaborators joining the project. Please feel free to get in touch if you are interested.
+
+Email : abhiaj (at) math (dot) uni-paderborn (dot) de
