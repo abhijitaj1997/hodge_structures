@@ -1,4 +1,4 @@
-import Mathlib.Tactic
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 
 universe u₁ u₂ u₃
@@ -55,15 +55,8 @@ noncomputable def basechange_map (S : Type u₃) [CommRing S] [Algebra R S]
                    rfl
     | add _ _ h₁ h₂ => simp[smul_add, map_add, h₁, h₂]
 
-def Submodule.inclusion' (N : Submodule R M) : N →ₗ[R] M where
-  toFun w := by
-    have : N ≤ ⊤ := by simp
-    exact ↑(Submodule.inclusion this w)
-  map_add' := by simp
-  map_smul' := by simp
-
 noncomputable def extend (N : Submodule R M) : Submodule S (M[R,S])
-  := Submodule.map (basechange_map S (Submodule.inclusion' N)) ⊤
+  := Submodule.map (basechange_map S (N.subtype)) ⊤
 
 end BaseChange
 
