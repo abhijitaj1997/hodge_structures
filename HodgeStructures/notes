@@ -2,3 +2,7 @@
     real vecotr spaces. If need be, I could instead create a function
     `toComplex`, which makes `conj (index i j)` into a complex vector space.
     The question is whether I need it.
+
+2.  I probably need to create a Basic folder in each file to keep track
+    which lean folders need update and which don't. Check how it is done in 
+    Mathlib

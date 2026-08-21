@@ -24,6 +24,10 @@ structure on `V` will not be the same
 -/
 -- I do not know if the index_conjugate term is defined well
 -- Should I make it a `fintie dimensional`??
+
+/-- A real Hodge structure on a real vector space `V`, is a direct sum decomposition
+of its complexification, indexed by `ℤ × ℤ`, such that the `(p, q)`-th
+component of the decompositon is conjugate to the `(q, p)`-th component. -/
 @[ext]
 structure RealHodgeStructure (V : Type u) [AddCommGroup V] [Module ℝ V] where
   index : ℤ → ℤ → Subspace ℂ (V[ℝ,ℂ])
@@ -66,14 +70,18 @@ variable {V₂ : Type v} [AddCommGroup V₂] [Module ℝ V₂]
 -- Or, Should this be done starting form toFun?
 -- Morphisms between vector spaces are also group hom (check how it is done
 -- there)
+/-- A morphism between real Hodge structures `h₁` and `h₂`, is a linear map
+between the base vector spaces, such that the induced map between the
+complexifications respects the direct sum decopositon. -/
 @[ext]
 structure RealHSHom (h₁ : RealHodgeStructure V₁) (h₂ : RealHodgeStructure V₂)
     extends LinearMap (RingHom.id ℝ) V₁ V₂ where
   component_corespondence : ∀ p₁ p₂ : ℤ,
     (h₁.index p₁ p₂).map (basechange_map ℂ toLinearMap) ≤ h₂.index p₁ p₂
 
---notation:25 h₁ " →ₗₕ[" ℝ:25 "] " h₂:0 => LinearMap (RingHom.id R) M M₂
+/-- `h₁ →ₕₛ h₁` is the type of real Hodge structures morphisms from `h₁` to `h₂` -/
 notation:25 h₁ " →ₕₛ " h₂:0 => (RealHSHom h₁ h₂) -- how does on get ℝ into this?
+
 
 instance {h₁ : RealHodgeStructure V₁} {h₂ : RealHodgeStructure V₂}
     : FunLike (RealHSHom h₁ h₂) V₁ V₂ where
@@ -107,10 +115,17 @@ lemma RealHSHom.id_apply (h : RealHodgeStructure V₁) (v : V₁)
 structure RealHSEquiv (h₁ : RealHodgeStructure V₁) (h₂ : RealHodgeStructure V₂)
     extends RealHSHom h₁ h₂, V₁ ≃ₗ[ℝ] V₂
 
--- *the attribute did not work!!*
+instance {h₁ : RealHodgeStructure V₁} {h₂ : RealHodgeStructure V₂}
+    : Coe (RealHSEquiv h₁ h₂) (RealHSHom h₁ h₂) where
+    coe f := f.toRealHSHom
+
 attribute [coe] RealHSEquiv.toRealHSHom
+
 notation:50 h₁ " ≃ₕₛ " h₂ => RealHSEquiv h₁ h₂
 
+/-- The morphism of real Hodge structure underlying an equivalence
+real of Hodge structures -/
+add_decl_doc RealHSEquiv.toRealHSHom
 
 -- I NEED TO DEFINE  A `RealHSHomClass`
 
