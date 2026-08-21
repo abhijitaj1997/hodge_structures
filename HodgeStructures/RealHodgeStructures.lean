@@ -1,17 +1,19 @@
 import HodgeStructures.BaseModification
 
 
--- I did not use extends, because I do not want someone passing a
--- that would create two vector space structure on V
--- one from whatever vector space the person started with
--- the other from RealHodgeStructure.toModule
--- Now, you can only pass real vector spaces as arguments
-
 universe u v
 open TensorProduct
 open DirectSum
 
 
+/-
+I did not use extends because the question is basically
+is a real HS a vector space with a additional properties
+or is a real HS on a vector some structure of the aforementioned
+vector space. And, I went with the latter.
+
+The same reason why you need AddCommGroup for a Module?
+-/
 -- I do not know if the index_conjugate term is defined well
 -- Should I make it a `fintie dimensional`??
 structure RealHodgeStructure (V : Type u) [AddCommGroup V] [Module ℝ V] where
