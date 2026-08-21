@@ -13,7 +13,14 @@ or is a real HS on a vector space some structure on the
 aforementioned vector space."
 And, I went with the latter.
 
-The same reason why you need AddCommGroup for a Module?
+This is because we sometimes need to consider multiple 
+hodge structures on the same vector space (not just on
+the same set). Adding the vector space structure into
+the bundle would mean that if I have two terms
+`h₁ RealHodgeStructure V`
+`h₂ RealHodgeStructure V`
+then in the two cases, the underlying vector space
+structure on `V` will not be the same
 -/
 -- I do not know if the index_conjugate term is defined well
 -- Should I make it a `fintie dimensional`??
