@@ -55,6 +55,14 @@ noncomputable def basechange_map (S : Type u₃) [CommRing S] [Algebra R S]
                    rfl
     | add _ _ h₁ h₂ => simp[smul_add, map_add, h₁, h₂]
 
+lemma basechange_map_id : ∀ m : M[R,S],
+    (basechange_map S ((LinearMap.id : M →ₗ[R] M))) m = m := by
+  intro m
+  induction m using TensorProduct.induction_on with
+  | zero => apply map_zero
+  | tmul x y => rfl
+  | add _ _ h₁ h₂ => rw[map_add, h₁, h₂]
+
 noncomputable def extend (N : Submodule R M) : Submodule S (M[R,S])
   := Submodule.map (basechange_map S (N.subtype)) ⊤
 
