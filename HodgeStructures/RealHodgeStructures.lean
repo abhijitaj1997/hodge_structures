@@ -7,10 +7,11 @@ open DirectSum
 
 
 /-
-I did not use extends because the question is basically
-is a real HS a vector space with a additional properties
-or is a real HS on a vector some structure of the aforementioned
-vector space. And, I went with the latter.
+I did not use extends because the question is basically:
+"Is a real HS a vector space with a additional properties
+or is a real HS on a vector space some structure on the 
+aforementioned vector space."
+And, I went with the latter.
 
 The same reason why you need AddCommGroup for a Module?
 -/
